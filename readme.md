@@ -13,8 +13,8 @@ The base Azure Function does not contain the necessary chromium packages to run 
 
 Run the following commands that installs chromium, chrome driver and selenium on top of the Azure Function base image:
 
-`$acr_id = "\<\<your acr\>\>.azurecr.io"`  
-`docker login $acr_id -u \<\<your username\>\> -p \<\<your password\>\>`  
+`$acr_id = "<<your acr>>.azurecr.io"`  
+`docker login $acr_id -u <<your username>> -p <<your password>>`  
 `docker build --tag $acr_id/selenium .`  
 `docker push $acr_id/selenium:latest`
 
@@ -22,12 +22,12 @@ Run the following commands that installs chromium, chrome driver and selenium on
 
 Run the following commands:
 
-`$rg = "\<\<your resource group name\>\>"`  
-`$loc = "\<\<your location\>\>"`  
-`$plan = "\<\<your azure function plan P1v2\>\>"`  
-`$stor = "\<\<your storage account adhering to function\>\>"`  
-`$fun = "\<\<your azure function name\>\>"`  
-`$acr_id = "\<\<your acr\>\>.azurecr.io"`  
+`$rg = "<<your resource group name>>"`  
+`$loc = "<<your location>>"`  
+`$plan = "<<your azure function plan P1v2>>"`  
+`$stor = "<<your storage account adhering to function>>"`  
+`$fun = "<<your azure function name>>"`  
+`$acr_id = "<<your acr>>.azurecr.io"`  
 
 `az group create -n $rg -l $loc`  
 `az storage account create -n $stor -g $rg --sku Standard_LRS`  
