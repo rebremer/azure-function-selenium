@@ -38,6 +38,16 @@ Run the following commands:
 
 Test the Function in the portal or in your browser. The following code in __init__.py will return all URLs in the following webpage:
 
+`import azure.functions as func`  
 `from selenium import webdriver`  
-`driver.get('http://www.ubuntu.com/')`  
-`links = driver.find_elements_by_tag_name("a")`
+
+`def main(req: func.HttpRequest) -> func.HttpResponse:`  
+
+&nbsp;&nbsp;&nbsp;&nbsp;`chrome_options = webdriver.ChromeOptions()`  
+&nbsp;&nbsp;&nbsp;&nbsp;`chrome_options.add_argument('--headless')`  
+&nbsp;&nbsp;&nbsp;&nbsp;`chrome_options.add_argument('--no-sandbox')`  
+&nbsp;&nbsp;&nbsp;&nbsp;`chrome_options.add_argument('--disable-dev-shm-usage')`  
+
+&nbsp;&nbsp;&nbsp;&nbsp;`driver = webdriver.Chrome("/usr/local/bin/chromedriver", chrome_options=chrome_options)`  
+&nbsp;&nbsp;&nbsp;&nbsp;`driver.get('http://www.ubuntu.com/')`  
+&nbsp;&nbsp;&nbsp;&nbsp;`links = driver.find_elements_by_tag_name("a")`  
