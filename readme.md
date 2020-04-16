@@ -1,7 +1,7 @@
 ## Azure Function in Python running selenium webdriver using a custom docker image
 The base Azure Function does not contain the necessary chromium packages to run selenium webdriver. This project creates a custom docker image with the required libraries such that it can be run as Azure Function
 
-### 1. Prequesites
+### 1. Prerequisites
 
 - [Docker desktop](https://docs.docker.com/get-docker/)
 - [Azure Container Registry](https://docs.microsoft.com/nl-nl/azure/container-registry/container-registry-get-started-portal)
