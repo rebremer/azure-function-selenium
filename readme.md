@@ -36,7 +36,7 @@ Run the following commands:
 
 ### 4. Run Azure Function as HTTP trigger
 
-The following code in __init__.py will return all URLs in the following webpage:
+Test the Function in the portal or in your browser. The following code in __init__.py will return all URLs in the following webpage:
 
 `from selenium import webdriver`  
 `driver.get('http://www.ubuntu.com/')`  
