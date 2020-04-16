@@ -9,7 +9,7 @@ The base Azure Function does not contain the necessary chromium packages to run 
 - [Azure Core Tools version 2.x](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#v2)
 - [(optional) Visual Studio Code](https://code.visualstudio.com/)
 
-### 2. Create your own docker image using the DockerFile in docker desktop
+### 2. Create custom docker image using the DockerFile in docker desktop
 
 Run the following commands that installs chromium, chrome driver and selenium on top of the Azure Function base image:
 
