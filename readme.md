@@ -11,7 +11,7 @@ The base Azure Function does not contain the necessary chromium packages to run 
 
 ### 2. Create your own docker image using the DockerFile in docker desktop
 
-Run the following commands:
+Run the following commands that installs chromium, chrome driver and selenium on top of the Azure Function base image:
 
 `$acr_id = "\<\<your acr\>\>.azurecr.io"`  
 `docker login $acr_id -u \<\<your username\>\> -p \<\<your password\>\>`  
