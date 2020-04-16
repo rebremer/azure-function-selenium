@@ -1,5 +1,5 @@
-## Azure Function running selenium webdriver using a customer docker image
-The base Azure Function does not contain the necessary chromium packages to run selenium webdriver. This project creates a customer docker image with the required libraries such that it can be run as Azure Function
+## Azure Function running selenium webdriver using a custom docker image
+The base Azure Function does not contain the necessary chromium packages to run selenium webdriver. This project creates a custom docker image with the required libraries such that it can be run as Azure Function
 
 ### 1. Prequesites
 
