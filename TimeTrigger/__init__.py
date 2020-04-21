@@ -1,3 +1,4 @@
+import datetime
 import logging
 
 import azure.functions as func
@@ -7,8 +8,14 @@ from azure.storage.blob import BlobServiceClient
 from datetime import datetime
 import os
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request. 11:38')
+def main(mytimer: func.TimerRequest) -> None:
+    utc_timestamp = datetime.datetime.utcnow().replace(
+        tzinfo=datetime.timezone.utc).isoformat()
+
+    if mytimer.past_due:
+        logging.info('The timer is past due!')
+
+    logging.info('Python timer trigger function ran at %s', utc_timestamp)
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
@@ -24,7 +31,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             link_list = link.text
         else:
             link_list = link_list + ", " + link.text
-
+    
     # create blob service client and container client
     credential = DefaultAzureCredential()
     storage_account_url = "https://" + os.environ["par_storage_account_name"] + ".blob.core.windows.net"
@@ -32,8 +39,3 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     blob_name = "test" + str(datetime.now()) + ".txt"
     blob_client = client.get_blob_client(container=os.environ["par_storage_container_name"], blob=blob_name)
     blob_client.upload_blob(link_list)
-
-    return func.HttpResponse(
-             str(link_list),
-             status_code=200
-    )

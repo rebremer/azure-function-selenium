@@ -31,9 +31,10 @@ ENV PATH="/usr/local/bin/chromedriver:${PATH}"
 # 3. Install selenium in Python
 RUN pip install -U selenium
 
-# 4. Install other packages in requirements.txt
+# 4. Finally, copy python code to image
+COPY . /home/site/wwwroot
+
+# 5. Install other packages in requirements.txt
 RUN cd /home/site/wwwroot && \
     pip install -r requirements.txt
 
-# 5. Finally, copy python code to image
-COPY . /home/site/wwwroot
