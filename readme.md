@@ -34,7 +34,7 @@ Run the following commands:
 `az group create -n $rg -l $loc`  
 `az storage account create -n $stor -g $rg --sku Standard_LRS`  
 `az appservice plan create --name $plan --resource-group $rg --sku P1v2 --is-linux`  
-`az functionapp create --resource-group $rg --os-type Linux --plan $plan --deployment-container-image-name $acr_id/selenium:latest --name $fun --storage-account $stor`
+`az functionapp create --resource-group $rg --os-type Linux --plan $plan --deployment-container-image-name $acr_id/selenium:latest --name $fun --storage-account $stor --docker-registry-server-user <<your acr username>> --docker-registry-server-password <<your acr password>> `
 
 ### 4. Run Azure Function as HTTP trigger
 
