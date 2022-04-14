@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azure-functions/python:2.0
+FROM mcr.microsoft.com/azure-functions/python:4-python3.9
 
 # 0. Install essential packages
 RUN apt-get update \
@@ -8,6 +8,7 @@ RUN apt-get update \
         git \
         wget \
         unzip \
+        unixodbc-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # 1. Install Chrome (root image is debian)
@@ -37,4 +38,3 @@ COPY . /home/site/wwwroot
 # 5. Install other packages in requirements.txt
 RUN cd /home/site/wwwroot && \
     pip install -r requirements.txt
-
