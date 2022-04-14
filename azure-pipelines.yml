@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '44861136-f5b2-4c4b-8c1c-7ad9863ea2c8'
-  imageRepository: 'api2sqlselenium'
-  containerRegistry: 'devhawkio.azurecr.io'
+  dockerRegistryServiceConnection: <RegistryServiceConnectionID>
+  imageRepository: <ImageRepo>
+  containerRegistry: <AzureCRName>
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: 'latest'
 
