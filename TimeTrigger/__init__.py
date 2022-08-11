@@ -3,9 +3,10 @@ import logging
 
 import azure.functions as func
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from azure.identity import DefaultAzureCredential, ClientSecretCredential
 from azure.storage.blob import BlobServiceClient
-from datetime import datetime
+import datetime
 import os
 
 def main(mytimer: func.TimerRequest) -> None:
@@ -24,7 +25,7 @@ def main(mytimer: func.TimerRequest) -> None:
 
     driver = webdriver.Chrome("/usr/local/bin/chromedriver", chrome_options=chrome_options)
     driver.get('http://www.ubuntu.com/')
-    links = driver.find_elements_by_tag_name("a")
+    links = driver.find_elements(By.TAG_NAME, "a")
     link_list = ""
     for link in links:
         if link_list == "":
@@ -36,6 +37,6 @@ def main(mytimer: func.TimerRequest) -> None:
     credential = DefaultAzureCredential()
     storage_account_url = "https://" + os.environ["par_storage_account_name"] + ".blob.core.windows.net"
     client = BlobServiceClient(account_url=storage_account_url, credential=credential)
-    blob_name = "test" + str(datetime.now()) + ".txt"
+    blob_name = "test" + str(datetime.datetime.now()) + ".txt"
     blob_client = client.get_blob_client(container=os.environ["par_storage_container_name"], blob=blob_name)
     blob_client.upload_blob(link_list)
