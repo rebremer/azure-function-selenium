@@ -2,21 +2,27 @@ import logging
 
 import azure.functions as func
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
+
 from azure.identity import DefaultAzureCredential, ClientSecretCredential
 from azure.storage.blob import BlobServiceClient
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request. 11:38')
+    utc_timestamp = datetime.now().replace(tzinfo=timezone.utc).isoformat()
+    logging.info('Python timer trigger function ran at %s', utc_timestamp)
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-dev-shm-usage')
+    # see https://stackoverflow.com/questions/76568489/python-selenium-chromedriver-error-webdriver-init-got-an-unexpected-keywo
+    options = Options()
+    options.add_argument('--headless')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-    driver = webdriver.Chrome("/usr/local/bin/chromedriver", chrome_options=chrome_options)
     driver.get('http://www.ubuntu.com/')
     links = driver.find_elements(By.TAG_NAME, "a")
     link_list = ""
